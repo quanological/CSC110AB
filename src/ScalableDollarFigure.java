@@ -8,7 +8,7 @@
 
 public class ScalableDollarFigure {
 
-	final public static int SIZE = 9;
+	final public static int SIZE = 12;
 
 	public static void main(String[] args) {
 		// prints a diagram
