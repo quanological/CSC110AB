@@ -1,4 +1,4 @@
-package src;
+package Labs;
 
 /**
  * Programmer: Quan Truong CSC110AB <M-Th 12 - 12:50 P.M.> Assignment: Lab05
