@@ -2,14 +2,13 @@
  * Create a scalable dollar figure drawing.
  * 
  * Use a constant.
- * 
- * @author qmtru
+
  *
  */
 
-public class DollarFigureScalable {
+public class ScalableDollarFigure {
 
-	final public static int SIZE = 9;
+	final public static int SIZE = 12;
 
 	public static void main(String[] args) {
 		// prints a diagram
