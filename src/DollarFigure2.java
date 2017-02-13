@@ -1,3 +1,5 @@
+package src;
+
 public class DollarFigure2 {
     public static final int HEIGHT = 7;
     

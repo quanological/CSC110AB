@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Create a scalable dollar figure drawing.
  * 
