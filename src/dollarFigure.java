@@ -7,10 +7,10 @@ public class dollarFigure {
 
 	public static void main(String[] args) {
 		// prints a diagram
-		dollarFigure();
+		dollarFigureNAME();
 	}
 
-	public static void dollarFigure() {
+	public static void dollarFigureNAME() {
 		// prints 7 columns
 		for (int line = 1; line <= 7; line++) {
 
