@@ -1,6 +1,6 @@
 // Homework 2
 // Part B
-package Labs;
+package Rockets;
 
 public class drawRocketGit 
 {
