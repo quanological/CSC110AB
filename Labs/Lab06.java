@@ -1,5 +1,16 @@
 package Labs;
 
+/**
+ * Programmer: Quan Truong
+ * Assignment: Lab06
+ * Date: February 22, 2017
+ * 
+ * This program calculates and prints the power of 2 up to a specified power, which is specified
+ * by the user.
+ * 
+ * This program also prints a string in a vertical format, the string is provided by the 
+ * user. 
+ */
 import java.util.Scanner;
 
 public class Lab06 {
@@ -23,23 +34,24 @@ public class Lab06 {
 
 	}
 
+	//calculates the power of 2 up to a specified power
 	public static int calculatePowerOf2(int max) {
-		int result = 2;
+		int power = 1;
 
-		for (int i = 1; i <= max; i++) {
-			result *= i;
-
+		for (int i = 0; i < max; i++) {
+			power *= 2;
 		}
 
-		return result;
+		return power;
 	}
 
+	//returns a string in a vertical format
 	public static String vertical(String sentence) {
-		String s = "";
+		String verticalString = "";
 		for (int i = 0; i < sentence.length(); i++) {
-			s = s + sentence.charAt(i) + "\n";
+			verticalString = verticalString + sentence.charAt(i) + "\n";
 		}
-		return s;
+		return verticalString;
 
 	}
 }
