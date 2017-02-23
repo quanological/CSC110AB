@@ -1,11 +1,11 @@
 package Rockets;
 
 /*
- * Working on building a rocket to send to outer space. 
+ * Prints a rocket to console. 
  * 
- * But on a serious note, the drawLowerArrows method is achieved by flipping the column parameters from UpperArrows.
+ * Programmer: Quan Truong					Class: CSC110AB M-Th 12:12:50 AM
+ * Due Date: February 23, 2017
  * 
- * @author qmtru
  */
 
 public class RocketTest {
@@ -13,9 +13,7 @@ public class RocketTest {
 
 	public static void main(String[] args) {
 
-		// Alternating print and println because drawCone completes with a new
-		// line
-		// and next part does not
+	//Draws a rocket
 		drawCone();
 		drawLine();
 		drawUpperArrows();

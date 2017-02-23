@@ -2,7 +2,9 @@ package ProgrammingProjects;
 
 /**
  * 
- * Programmer: Quan Truong Due Date: Feb. 23, 2017
+ * Programmer: Quan Truong 					Class: CSC110AB M-Th 12:12:50 AM
+ * Due Date: Feb. 23, 2017
+ * 
  * 
  * This program prints out a man climbing stairs.
  *
