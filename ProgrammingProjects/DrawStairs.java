@@ -11,7 +11,7 @@ package ProgrammingProjects;
 
 public class DrawStairs{
 	
-	final static int STEPS = 8;  
+	final static int STEPS = 4;  
 	 
 	   public static void main(String[] args){
 		   
@@ -25,6 +25,7 @@ public class DrawStairs{
 		   String manClimbingStairs = "";
 		   
 		   //for loop for the amount of steps
+		   //creates 17 spaces -- correct
 		      for(int step = 1;step <= STEPS;step++){
 		      
 		         // Draw Head  ///////////////////////
@@ -36,6 +37,7 @@ public class DrawStairs{
 		         
 		         
 		         //2nd set of spaces
+		         //decrement spaces by 5
 		         for(int spaces = (step-1)*5;spaces >= 1;spaces--) {            
 		        	 manClimbingStairs += " ";                             
 		         }
