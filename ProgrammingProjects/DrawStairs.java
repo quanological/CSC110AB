@@ -27,12 +27,12 @@ public class DrawStairs {
 		// creates 17 spaces -- correct
 		for (int step = 1; step <= STEPS; step++) {
 
-			// Draw Head ///////////////////////
+			//the head
 			for (int spaces = 0; spaces < (step - STEPS) * (-5); spaces++) {
 				manClimbingStairs += " ";
 			}
-
 			manClimbingStairs += "  o  ******";
+			
 
 			// 2nd set of spaces
 			// decrement spaces by 5
