@@ -9,103 +9,98 @@ package Rockets;
  */
 
 public class RocketTest {
-	final static int SIZE = 4;
+	final static int SIZE = 16;
 
 	public static void main(String[] args) {
 
 		// Alternating print and println because drawCone completes with a new
 		// line
 		// and next part does not
-		System.out.print(drawCone());
-		System.out.println(drawLine());
-		System.out.print(drawUpperArrows());
-		System.out.print(drawLowerArrows());
-		System.out.println(drawLine());
-		System.out.print(drawUpperArrows());
-		System.out.print(drawLowerArrows());
-		System.out.println(drawLine());
-		System.out.println(drawCone());
+		drawCone();
+		drawLine();
+		drawUpperArrows();
+		drawLowerArrows();
+		drawLine();
+		drawUpperArrows();
+		drawLowerArrows();
+		drawLine();
+		drawCone();
 	}
 
-	public static String drawCone() {
+	public static void drawCone() {
 
 		int width = SIZE * 2 - 1;
-		String result = "";
 
 		// columns
 		for (int line = width; line >= 1; line--) {
 
 			// spaces
 			for (int space = 1; space <= line; space++) {
-				result += " ";
+				System.out.print(" ");
 			}
 
 			// fslash
 			for (int fslash = line; fslash <= width; fslash++) {
-				result += "/";
+				System.out.print("/");
 			}
 
 			// stars
 			for (int stars = 1; stars <= 2; stars++) {
-				result += "*";
+				System.out.print("*");
 			}
 
 			// bslash
 			for (int bslash = line; bslash <= width; bslash++) {
-				result += "\\";
+				System.out.print("\\");
 			}
 
 			// spaces
 			for (int space = 1; space <= line; space++) {
-				result += " ";
+				System.out.print(" ");
 			}
 
 			// print new line
-			result += "\n";
+			System.out.print("\n");
 
 		}
 
-		return result;
 
 	}
 
-	public static String drawLine() {
+	public static void drawLine() {
 
 		int width = (SIZE * 4);
-		String result = "";
 
-		result += "+";
+		System.out.print("+");
 
 		// odd is =
 		// even is *
 		for (int line = 1; line <= width; line++) {
 			if (line % 2 == 1) {
-				result += "=";
+				System.out.print("=");
 			} else if (line % 1 == 0) {
-				result += "*";
+				System.out.print("*");
 			}
 		}
 
-		result += "+";
-		return result;
+		System.out.print("+");
+		System.out.println();
 
 	}
 
-	public static String drawUpperArrows() {
-		String result = "";
-
+	public static void drawUpperArrows() {
 		// amount of columns is proportional to size
 		for (int column = SIZE; column >= 1; column--) {
 
 			// append the |
-			result += "|";
+			System.out.print("|");
 
 			// amount of dots begins at 2 and ends when it hits the current
 			// column
 			// column decrements in value so the number of dots will decrease
 			// begins at 2 in order to align with SIZE number of columns
 			for (int dots = 2; dots <= column; dots++) {
-				result += ".";
+				System.out.print(".");
 			}
 
 			// amount of slashes begins at column (4), and tested against
@@ -113,49 +108,48 @@ public class RocketTest {
 			// column decrements so slash will decrease in value
 			// then slash will count upwards to SIZE
 			for (int slashes = column; slashes <= SIZE; slashes++) {
-				result += "/\\";
+				System.out.print("/\\");
 			}
 
 			// amount of dots can be achieved by taking the initial dots for
 			// loop
 			// and multiplying test value by 2 and subtracting 1
 			for (int dots = 2; dots <= ((column * 2) - 1); dots++) {
-				result += ".";
+				System.out.print(".");
 			}
 
 			// same slash loop as the initial slash loop
 			for (int slashes = column; slashes <= SIZE; slashes++) {
-				result += "/\\";
+				System.out.print("/\\");
 			}
 
 			// same dot loop as the initial dot loop
 			for (int dots = 2; dots <= column; dots++) {
-				result += ".";
+				System.out.print(".");
 			}
 
-			result += "|";
+			System.out.print("|");
 
-			result += "\n";
+			System.out.print("\n");
 		}
 
-		return result;
 	}
 
-	public static String drawLowerArrows() {
+	public static void drawLowerArrows() {
 
 		String result = "";
 		// amount of columns is proportional to size
 		for (int column = 1; column <= SIZE; column++) {
 
 			// append the |
-			result += "|";
+			System.out.print("|");
 
 			// amount of dots begins at 2 and ends when it hits the current
 			// column
 			// column decrements in value so the number of dots will decrease
 			// begins at 2 in order to align with SIZE number of columns
 			for (int dots = 2; dots <= column; dots++) {
-				result += ".";
+				System.out.print(".");
 			}
 
 			// amount of slashes begins at column (4), and tested against
@@ -163,31 +157,31 @@ public class RocketTest {
 			// column decrements so slash will decrease in value
 			// then slash will count upwards to SIZE
 			for (int slashes = column; slashes <= SIZE; slashes++) {
-				result += "\\/";
+				System.out.print("\\/");
 			}
 
 			// amount of dots can be achieved by taking the initial dots for
 			// loop
 			// and multiplying test value by 2 and subtracting 1
 			for (int dots = 2; dots <= ((column * 2) - 1); dots++) {
-				result += ".";
+				System.out.print(".");
 			}
 
 			// same slash loop as the initial slash loop
 			for (int slashes = column; slashes <= SIZE; slashes++) {
-				result += "\\/";
+				System.out.print("\\/");
 			}
 
 			// same dot loop as the initial dot loop
 			for (int dots = 2; dots <= column; dots++) {
-				result += ".";
+				System.out.print(".");
 			}
 
-			result += "|";
-			result += "\n";
+			System.out.print("|");
+			System.out.println();
 
 		}
-		return result;
+
 	}
 
 }
