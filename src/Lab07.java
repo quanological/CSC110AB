@@ -7,6 +7,8 @@ public class Lab07 {
 		System.out.println(sumSome(5, 18, 3));
 
 		System.out.println(isBalanced("aeioubdfgh"));
+		
+		System.out.println(merge("fort", "knox"));
 
 	}
 
@@ -22,21 +24,20 @@ public class Lab07 {
 		return sum;
 	}
 
-
-	
 	public static boolean isBalanced(String upperCaseCheck) {
 
 		String upperCaseupperCaseCheck = upperCaseCheck.toUpperCase();
-		int vowel, consonant;
-		vowel = 0;
-		consonant = 0;
+
+		int vowelCount, consonantCount;
+		vowelCount = 0;
+		consonantCount = 0;
 
 		// loop through the string and count number of vowels
 		for (int i = 0; i < upperCaseupperCaseCheck.length(); i++) {
 			if ((upperCaseCheck.charAt(i) == 'a') || (upperCaseCheck.charAt(i) == 'e')
 					|| (upperCaseCheck.charAt(i) == 'i')
 					|| (upperCaseCheck.charAt(i) == 'o' || (upperCaseCheck.charAt(i) == 'u'))) {
-				vowel += 1;
+				vowelCount += 1;
 			}
 		}
 
@@ -60,17 +61,31 @@ public class Lab07 {
 					|| (upperCaseCheck.toUpperCase().charAt(i) == 'V')
 					|| (upperCaseCheck.toUpperCase().charAt(i) == 'X')
 					|| (upperCaseCheck.toUpperCase().charAt(i) == 'Z')) {
-				consonant += 1;
+				consonantCount += 1;
 			}
 		}
 
-		return (vowel == consonant);
+		return (vowelCount == consonantCount);
 
 	}
-	
-	public static String merge (String a, String b) {
-		
-		
+
+	public static String merge(String a, String b) {
+
+		String mergedString = "";
+
+		for (int i = 0; i <= a.length() - 1; i++) {
+			if (i % 2 == 0) {
+				mergedString += a.charAt(i);
+				mergedString += b.charAt(i);
+			} else if ( i % 2 != 0) {
+				mergedString += a.charAt(i);
+				mergedString += b.charAt(i);
+			}
+
+		}
+
+		return mergedString;
+
 	}
 
 }
