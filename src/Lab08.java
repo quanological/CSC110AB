@@ -1,96 +1,82 @@
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+/**
+ * Programmer: Quan Truong
+ * Date: March 23, 2017
+ * Class: CSC110AB Mon-Thurs 12:00-12:50 PM
+ * Professor: Dr. Zerangue
+ * Assignment: Lab08
+ */
 
 import java.util.Random;
 
-
-/*
-TODO LIST:
-
-1) Assure that all methods match the method names provided.
-
-2) Remove unnecessary comments
- */
-
 public class Lab08 {
-    //These variables are declared as constants so that I can use the genRandom variable as a test in a do while loop
+
     public static Random rand = new Random();
     public static int max = 21;
     public static int low = 5;
     public static int genRandom;
 
     public static void main(String[] args) {
-        System.out.println(maxDigit(68437));
-//        System.out.println("PrintX method: ");
-//        printX();
-//        System.out.println("Generate Random Char Method: ");
-//        generateRandomChar();
-//
-//
+        System.out.println();
 
+        System.out.println("PrintX method: ");
+        randomX();
+
+        System.out.println();
+
+        System.out.println("Generate Random Char Method: ");
+        generateRandomChar();
+
+        System.out.println();
+
+        System.out.println("Digit Range is: ");
         System.out.println(digitRange(402));
     }
 
 
-    //Logic is okay
-    public static void printX() {
-//        System.out.print("Number of x's should be = " + genRandom);
-//        System.out.println();
-//        do {
-//            genRandom = rand.nextInt((max - low)) + 5;
-//            for (int i = 0; i < genRandom; i++) {
-//                System.out.print('x');
-//
-//            }
-//            System.out.println();
-//        } while (genRandom != 5);
+    // prints a random number of 'x' characters (between 5 and 20)
+    // until a line prints 16 or more characters
+    public static void randomX() {
+        do {
+            genRandom = rand.nextInt((max - low)) + 5;
+            for (int i = 0; i < genRandom; i++) {
+                System.out.print('x');
+
+            }
+            System.out.println();
+        } while (genRandom <= 16);
     }
 
+    /**
+     * Generate random char per each line, on a random number of lines
+     */
     public static void generateRandomChar() {
 
         //generates a number between 97 and 122
-        int ranToChar = rand.nextInt(28 - 0) + 97;
-        System.out.println("The ranToChar is generated as: " + ranToChar);
+        int ranToChar = rand.nextInt(26) + 97;
 
         char fromRand = (char) ranToChar;
 
-        System.out.println("fromRand is generated as: " + fromRand);
-
         int numberOfLines = rand.nextInt(11 - 5) + 5;
 
-        System.out.println("The number of lines to be generated is: " + numberOfLines);
-
-
-        int upTo80Random = rand.nextInt(81 - 0);
-
-        System.out.println("UpTo80Random is " + upTo80Random);
+        int upTo80Random = rand.nextInt(81);
 
         for (int i = 1; i <= numberOfLines; i++) {
             for (int x = 1; x <= upTo80Random; x++) {
 
                 System.out.print((char) ranToChar);
             }
-            upTo80Random = rand.nextInt(81 - 0);
-            ranToChar = rand.nextInt(28 - 0) + 97;
+            upTo80Random = rand.nextInt(81);
+            ranToChar = rand.nextInt(26 - 0) + 97;
             System.out.println();
         }
     }
 
-    public static int maxDigit(int parameter) {
-
-        //ensures that negative numbers are converted to absolute value so that we may find lowest number
-        parameter = Math.abs(parameter);
-
-        if (parameter > 0) {
-            int isolatedDigit = parameter % 10;
-            int max = maxDigit(parameter / 10);
-            return Math.max(isolatedDigit, max);
-
-        } else {
-            return 1;
-        }
-
-    }
-
+    /**
+     * Take the highest digit from the parameter and subtract it from the lowest, then add one.
+     *
+     * @param num The number parameter, integer.
+     * @return The highest digit from the parameter and subtract it from the lowest, then add one.
+     */
     public static int digitRange(int num) {
         num = Math.abs(num);
         int max = num % 10;
@@ -105,12 +91,8 @@ public class Lab08 {
             } else if (digit < min) {
                 min = digit;
             }
-
             num /= 10;
         }
-
         return max - min + 1;
     }
-
-
 }
