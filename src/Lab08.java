@@ -3,6 +3,14 @@ import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import java.util.Random;
 
 
+/*
+TODO LIST:
+
+1) Assure that all methods match the method names provided.
+
+2) Remove unnecessary comments
+ */
+
 public class Lab08 {
     //These variables are declared as constants so that I can use the genRandom variable as a test in a do while loop
     public static Random rand = new Random();
