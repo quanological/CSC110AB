@@ -4,6 +4,9 @@
  * Class: CSC110AB Mon-Thurs 12:00-12:50 PM
  * Professor: Dr. Zerangue
  * Assignment: Lab08
+ *
+ * This program prints a random number of 'x' characters until a condition is met. This program also prints a random number of lines between 5 and 20,
+ * and on those lines will be a random character. This program also prints the range of a given number.
  */
 
 import java.util.Random;
