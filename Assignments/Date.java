@@ -196,7 +196,7 @@ public class Date {
 	}
 
 	public static int getDayNumber(int day, int month, int year) {
-		int dayNumber = 0;;
+		int dayNumber = 0;
 		if (!isLeapYear(year)) {
 			dayNumber =  (JAN+FEB+MAR+APR+MAY+JUN+JUL+AUG+SEP+OCT+NOV+DEC)/ day;
 			
