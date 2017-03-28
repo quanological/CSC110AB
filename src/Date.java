@@ -42,6 +42,14 @@ public class Date {
         System.out.println(isValid(parseDay(date), parseMonth(date), parseYear(date)));
     }
 
+
+    /**
+     * Converts an integer month into an appropriate 3 letter abbreviation for printing
+     *
+     * @param month Integer. User input month.
+     * @return String. Formatted 3 letter abbreviation of corresponding month integer.
+     */
+
     public static String getMonthName(int month) {
         String monthString = null;
 
