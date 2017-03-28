@@ -1,16 +1,10 @@
 /**
- * Exercise 3-4 of Think Java, 2016.
- * A recursive Guess The Number Game.
- * Feel free to make improvements!
- *
- * @author Quan Truong
- * <p>
  * Programmer: Quan Truong
  * Assignment: Lab09
  * Date: March 27, 2017
  * Professor: Dr. Zerangue
  * Class: CSC110AB 12:00 - 12:50 PM
- * <p>
+ *
  * A recursive number guessing game. The user inputs numbers until it matches a computer generated
  * number within a given range.
  */
