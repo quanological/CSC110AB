@@ -4,7 +4,7 @@
  * Class: CSC110AB Mon-Thurs 12:00-12:50 PM
  * Professor: Dr. Zerangue
  * Assignment: Lab08
- * <p>
+ *
  * This program prints a random number of 'x' characters until a condition is met. This program also prints a random number of lines between 5 and 20,
  * and on those lines will be a random character. This program also prints the range of a given number.
  */
@@ -38,6 +38,10 @@ public class Lab08 {
 
     // prints a random number of 'x' characters (between 5 and 20)
     // until a line prints 16 or more characters
+
+    /**
+     * Prints a random number of 'x' chars between 5 and 20 until a line contains 16 or more 'x' chars
+     */
     public static void randomX() {
         do {
             genRandom = rand.nextInt((max - low)) + 5;
@@ -56,8 +60,6 @@ public class Lab08 {
 
         //generates a number between 97 and 122
         int ranToChar = rand.nextInt(26) + 97;
-
-        char fromRand = (char) ranToChar;
 
         int numberOfLines = rand.nextInt(11 - 5) + 5;
 
