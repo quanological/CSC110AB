@@ -197,8 +197,7 @@ public class Date {
      * Compute the numerical day.
      *
      * @param day       Integer. The day of the month
-     * @param userMonth Integer. The month of the year
-     * @param year      Integer. The year of the date
+     * @param month     Integer. The month of the year.
      * @return Integer. The day number in a given year
      */
     public static int getDayNumber(int day, int month) {
