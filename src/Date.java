@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 /**
- * This program parses the user input for the current date and prints the date
- * if it is valid.
- * <p>
+ * This program receives an input from the user and prints a statement to the console if correct, otherwise it will
+ * print an error message to the console.
+ *
  * Programmer: Quan Truong
  * Assignment: Programming Assignment 2 (Date.java)
  * Date: March 21, 2017
@@ -38,10 +38,14 @@ public class Date {
         System.out.print("Enter a date in the three number format, m/d/year: ");
         date = kb.nextLine();
 
-        // Should the print statements be inside the isValid method or in main?
-        System.out.println(isValid(parseDay(date), parseMonth(date), parseYear(date)));
-    }
+        if (isValid(parseDay(date), parseMonth(date), parseYear(date))) {
+            System.out.println(getMonthName(parseMonth(date)) + " " + parseDay(date) + ", " + parseYear(date) + " is a valid date and is day number " + getDayNumber(parseDay(date), parseMonth(date)) + " in " + parseYear(date));
 
+        }
+
+
+        //TODO PRINT HERE WITH IF STATEMENT
+    }
 
     /**
      * Converts an integer month into an appropriate 3 letter abbreviation for printing
@@ -110,18 +114,14 @@ public class Date {
     }
 
     /**
-     * Returns the day from user input as Integer data type.
+     * Substrings the day from the date from user input and parses it into an Integer data type.
      *
-     * @param date String. User input for the date.
-     * @return The second substring before the 2nd '/' in the user input.
+     * @param date String. User's input for the date.
+     * @return Integer. The second substring before the 2nd '/' in the user input as an Integer.
      */
     public static int parseDay(String date) {
-
-        // Substring the day from the user input
         String splitDay = date.substring(date.indexOf('/') + 1, date.indexOf('/', date.indexOf('/') + 1));
-
         int day = Integer.parseInt(splitDay);
-
         return day;
     }
 
@@ -133,22 +133,28 @@ public class Date {
      */
     public static int parseYear(String date) {
         String parsedYear;
-
         int divider = date.indexOf('/');
-
         int subString = date.indexOf('/', divider + 1);
         parsedYear = date.substring(subString + 1);
         return Integer.parseInt(parsedYear);
     }
 
     /**
-     * Checks whether a year is a leap year.
+     * Checks whether a given year is a leap year, using an algorithm that is derived from Wikipedia.
      *
      * @param year Integer. Year to be checked whether it is a leap year.
      * @return Boolean. True if it is a leap year, false if not a leap year.
      */
     public static boolean isLeapYear(int year) {
-        return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+        if (year % 4 != 0) {
+            return false;
+        } else if (year % 400 == 0) {
+            return true;
+        } else if (year % 100 == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -164,27 +170,23 @@ public class Date {
 
         int maxDays = maxDays(month);
 
-        boolean dayValid = (day > 0) && (day < maxDays);
-
         boolean monthValid = (month >= JAN) && (DEC >= month);
 
         boolean yearValid = (1 <= year) && (year <= 3000);
 
-        // check if the year is leap
-        // began with error.. moved on downwards towards the valid test
-        if (isLeapYear(year) && (day == 29) && (month == 2)) {
+
+        //if day number is 29, and not a leap year, return false
+        if (!isLeapYear(year) && (day == 29) && (month == 2)) {
             System.out.println(
-                    "The day you have entered is only capable of existing on a leap year. Please insert the " +
-                            "correct date. ");
-        } else if (!dayValid) {
-            System.err.println("The day you have entered for the given month is invalid");
+                    "Invalid day number for February for given year.");
         } else if (!yearValid) {
-            System.err.println("The year you entered is invalid. Please enter a year between 1 and 3000. ");
+            System.err.println("Invalid year.");
+        } else if (!dayValid(day, month, year)) {
+            System.err.println("Invalid day number for month.");
         } else if (!monthValid) {
             System.err.println("The month you entered is invald.");
         } else {
-            System.out.println(getMonthName(month) + " " + day + ", " + year + " is a valid date and is day number "
-                    + getDayNumber(day, month, year) + " in " + year);
+
             return true;
         }
 
@@ -192,24 +194,20 @@ public class Date {
     }
 
     /**
-     * Compute the day in a given year.
+     * Compute the numerical day.
      *
      * @param day       Integer. The day of the month
      * @param userMonth Integer. The month of the year
      * @param year      Integer. The year of the date
      * @return Integer. The day number in a given year
      */
-    public static int getDayNumber(int day, int userMonth, int year) {
+    public static int getDayNumber(int day, int month) {
         int dayNumber = 0;
-        for (int month = 1; month < userMonth; month++) {
-            dayNumber += maxDays(month);
+        for (int monthCount = 1; monthCount < month; monthCount++) {
+            dayNumber += maxDays(monthCount);
         }
 
         dayNumber += day;
-
-        if (isLeapYear(year)) {
-            dayNumber += 1;
-        }
         return dayNumber;
     }
 
@@ -223,16 +221,12 @@ public class Date {
      * @return Integer. Number of days in the given month number
      */
     public static int maxDays(int userMonth) {
-
         int maxDays;
-
         switch (userMonth) {
             case 2:
-
                 // max days for february
                 maxDays = 28;
                 break;
-
             // max days for april, june, september, and november
             case 4:
             case 6:
@@ -240,7 +234,6 @@ public class Date {
             case 11:
                 maxDays = 30;
                 break;
-
             // max days for january, march, may, july, august, october, and december
             case 1:
             case 3:
@@ -251,12 +244,36 @@ public class Date {
             case 12:
                 maxDays = 31;
                 break;
-
             default:
                 maxDays = 0;
                 break;
         }
 
         return maxDays;
+    }
+
+    /**
+     * Checks whether a day is valid.
+     *
+     * @param day  Integer. The day from user input.
+     * @param year Integer. The user input's year.
+     * @return
+     */
+    public static boolean dayValid(int day, int month, int year) {
+        int oneDayForLeapYear = 1;
+
+        if (isLeapYear(year)) {
+            return (day >= 1 && day <= (maxDays(month) + oneDayForLeapYear));
+        } else {
+            return (day >= 1 && day <= maxDays(month));
+        }
+    }
+
+    public static boolean monthValid(int month) {
+        return (month >= JAN) && (DEC >= month);
+    }
+
+    public static boolean yearValid(int year) {
+        return (1 <= year) && (year <= 3000);
     }
 }
