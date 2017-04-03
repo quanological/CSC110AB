@@ -23,7 +23,7 @@ public class Lab10 {
 
     /**
      * Reads a file and changes certain characters in it according to the conditions below,
-     * and then writes the new changed text to a new file.
+     * and then wraps the word in parentheses, then writes the new text to a new file.
      *
      * @param in  Scanner. Location of text retrieval.
      * @param out PrintStream. Destination of where output is to be written.
