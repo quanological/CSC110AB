@@ -1,9 +1,11 @@
 /**
  * Programmer: Quan Truong
  * Assignment: Lab10
- * Date: March 28, 2017
+ * Due Date: April 3rd, 2017
  * Professor: Dr. Zerangue
  * Class: CSC110AB 12:00 - 12:50 PM
+ *
+ * This program replaces certain characters of words, and then wraps those words in parentheses.
  */
 
 import java.io.*;
@@ -16,27 +18,21 @@ public class Lab10 {
         File file = new File("/Users/qmtruong92/CSC110AB/src/words.txt");
         Scanner in = new Scanner(file);
 
-
-        // Replace the text in the file with the new text from leetSpeak
         leetSpeak(in, ps);
-
     }
 
     /**
-     * Reads a file and changes certain characters in it according to the conditions below.
+     * Reads a file and changes certain characters in it according to the conditions below,
+     * and then writes the new changed text to a new file.
      *
      * @param in  Scanner. Location of text retrieval.
      * @param out PrintStream. Destination of where output is to be written.
      */
     public static void leetSpeak(Scanner in, PrintStream out) {
-
         // Executes if the Scanner has another line
         while (in.hasNextLine()) {
-
-
             String currentLine = in.nextLine();
             Scanner fromFile = new Scanner(currentLine);
-
             // Replace text in each word as long as there are tokens
             while (fromFile.hasNext()) {
 
@@ -64,13 +60,9 @@ public class Lab10 {
                 if (word.charAt(word.length() - 1) == 's') {
                     word = word.substring(0, word.length() - 1) + "Z";
                 }
-
                 out.print("(" + word + ")" + " ");
-
             }
             out.println();
         }
-
-
     }
 }
