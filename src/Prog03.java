@@ -71,11 +71,14 @@ public class Prog03 {
                 //DONE
                 if (salary < FIFTEEN_THOUSAND_DOLLAR_SALARY) {
                     System.out.println(stringyName + ", sorry, but we cannot approve your loan.");
-
+                    System.out.println();
+                    System.out.println();
                 } else if (salary >= FIFTEEN_THOUSAND_DOLLAR_SALARY && salary < SEVENTY_FIVE_THOUSAND_DOLLAR_SALARY) {
                     creditScore = retrieveCreditScore();
                     if (creditScore < CREDIT_SCORE_750) {
                         System.out.println(stringyName + ", sorry, but we cannot approve your loan.");
+                        System.out.println();
+                        System.out.println();
                     } else if (creditScore >= CREDIT_SCORE_750) {
                         printSuccessfulApplication(stringyName);
                     }
@@ -86,6 +89,8 @@ public class Prog03 {
 
                     if (creditScore < CREDIT_SCORE_600) {
                         System.out.println(stringyName + ", sorry, but we cannot approve your loan.");
+                        System.out.println();
+                        System.out.println();
                     } else if (creditScore >= CREDIT_SCORE_600) {
                         printSuccessfulApplication(stringyName);
                     }
@@ -95,6 +100,8 @@ public class Prog03 {
 
                 if (creditScore < CREDIT_SCORE_650) {
                     System.out.println(stringyName + ", sorry, but we cannot approve your loan.");
+                    System.out.println();
+                    System.out.println();
                 } else if (creditScore >= CREDIT_SCORE_650 && creditScore < CREDIT_SCORE_800) {
                     printSuccessfulApplication(stringyName);
                 } else {
@@ -120,6 +127,8 @@ public class Prog03 {
                 PRINCIPAL, RATE * PERCENTAGE_MODIFIER);
         System.out.println();
         System.out.printf("You will need to make 96 payments of $%.2f each.", PAYMENT);
+        System.out.println();
+        System.out.println();
 
     }
 
