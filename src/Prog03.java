@@ -1,5 +1,6 @@
 /**
  * Programmer: Quan Truong
+ * Assignment: Programming Assignment #3
  * Date: April 4th, 2017
  * Class: CSC110AB M-Th 12:00 - 12:50 PM
  * Professor: Dr. Zerangue
