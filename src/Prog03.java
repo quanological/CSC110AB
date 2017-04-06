@@ -141,29 +141,18 @@ public class Prog03 {
         int creditScore;
         String stringyCreditScore = "";
 
-        System.out.println("What is your credit score?");
+        System.out.println("Enter an integer in the range 300 to 850:  ");
+
 
 
         do {
 
             do {
-                System.out.println("Enter the right credit score ");
-                System.out.print("Please enter the right credit score: ");
+                System.out.println("Enter your credit score: ");
                 stringyCreditScore = kb.next();
             } while (!isAllDigits(stringyCreditScore));
             creditScore = Integer.parseInt(stringyCreditScore);
         } while ((creditScore < 350) || (creditScore > 850));
-
-//        do {
-//
-//            while (!isAllDigits(stringyCreditScore)) {
-//                System.err.print("Enter the right credit score");
-//                System.out.println("Please enter the right credit score: ");
-//                stringyCreditScore = kb.next();
-//            }
-//            creditScore = Integer.parseInt(stringyCreditScore);
-//        } while (!isAllDigits(stringyCreditScore));
-
         return creditScore;
     }
 
@@ -176,9 +165,7 @@ public class Prog03 {
     public static int retrieveSalary() {
         int salary;
         String stringySalary = "";
-
         System.out.println("What is your salary?");
-
 
         do {
 
@@ -207,31 +194,21 @@ public class Prog03 {
     public static void studentOrNot(String studentStatus, String name) {
         char studentStatusSingleChar = (char) studentStatus.charAt(0);
 
-        // payment logic
-        double rate = .1150;
-        double monthsInYear = 12;
-
-        int months = 36;
-
-        double principal = 5000.00;
-
-        int multiplyBy100ToDisplayPercent = 100;
-
-        int intMonths = 36; //try using intMonths after calculating with double months
-
-        double payment = (((rate / monthsInYear) * (Math.pow(1 + (rate / monthsInYear), months))) /
-                (Math.pow(1 + (rate / monthsInYear), months) - 1)) * principal;
 
         do {
             if ((studentStatusSingleChar == 'Y') || (studentStatusSingleChar == 'y')) {
                 System.out.printf(name + ", we are happy to approve your" +
-                        " loan for $%.2f at a rate of %.2f", principal, rate * multiplyBy100ToDisplayPercent);
+                        " loan for $%.2f at a rate of %.2f", PRINCIPAL, RATE * PERCENTAGE_MODIFIER);
                 System.out.print("%");
                 System.out.println();
-                System.out.printf("You will need to make " + months + " payments of $%.2f each.", payment);
+                System.out.printf("You will need to make " + MONTH + " payments of $%.2f each.", PAYMENT);
+                System.out.println();
+                System.out.println();
                 break;
             } else if ((studentStatusSingleChar == 'n') || (studentStatusSingleChar == 'n')) {
                 System.out.println(name + ", sorry, but we cannot approve your loan.");
+                System.out.println();
+                System.out.println();
                 break;
             } else {
                 System.out.print("Enter only ONE character - Are you a student? (Y or N): ");
