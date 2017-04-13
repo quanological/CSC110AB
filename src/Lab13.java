@@ -14,11 +14,15 @@ public class Lab13 {
 
     public static void main(String[] args) {
 
-        int[] arrayOfNums = {7, 9, 2, 4, 3};
+        //Find the last 7 that occurs in this array. Result should be 8
+        int[] findLastParam = {1, 2, 4, 7, 8, 9, 10, 12, 7, 1};
+        int[] getIt = {2, 4, 5, 6, 7, 8, 9, 1, 2, 5, 2};
 
-        System.out.println(lastIndexOf(arrayOfNums, 2));
+        System.out.println(lastIndexOf(findLastParam, 8));
 
-        System.out.println(median(arrayOfNums));
+        System.out.println(lastIndexOf(findLastParam, 24));
+
+        System.out.println(median(getIt));
     }
 
     /**
@@ -28,13 +32,14 @@ public class Lab13 {
      * @return Integer. The last index in which a parameter appears.
      */
     public static int lastIndexOf(int[] array, int parameter) {
-        int theIndex = 0;
-        for (int count = 0; count < array.length; count++) {
-            if (array[count] > parameter) {
-                theIndex = count;
+        // default value for not found is -1
+        int lastIndex = -1;
+        for (int count = array.length - 1; count >= 0; count--) {
+            if (array[count] == parameter) {
+                lastIndex = count;
             }
         }
-        return theIndex;
+        return lastIndex;
     }
 
     /**
