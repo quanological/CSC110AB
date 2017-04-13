@@ -3,7 +3,7 @@
  * Professor: Dr. Zerangue
  * Class: CSC110AB
  * Date: April 13, 2017
- * <p>
+ *
  * This program returns the last index of a parameter in an array, and also gets the median number that occurs
  * in an array.
  */
@@ -11,20 +11,8 @@
 import java.util.Arrays;
 
 public class Lab13 {
-
     public static void main(String[] args) {
-
-        //Find the last 7 that occurs in this array. Result should be 8
-        int[] findLastParam = {1, 2, 4, 7, 8, 9, 10, 12, 7, 1};
-        int[] getIt = {2, 4, 5, 6, 7, 8, 9, 1, 2, 5, 2};
-
-        System.out.println(lastIndexOf(findLastParam, 8));
-
-        System.out.println(lastIndexOf(findLastParam, 24));
-
-        System.out.println(median(getIt));
     }
-
     /**
      * Returns the last index in which a parameter appears in an array.
      * @param array The array to be searched.
@@ -41,7 +29,6 @@ public class Lab13 {
         }
         return lastIndex;
     }
-
     /**
      * Returns the middle number in an odd array.
      * @param array Integer Array. The integer array to be searched for a median number.
