@@ -222,11 +222,13 @@ public class Exam2 {
             System.out.println();
         }
 
-        //attempting to delete duplicates from set, but do not know how
-        for (int i = 0; i < similarNumsFound.length; i++) {
-            //write code to remove duplicates
+        System.out.println(Arrays.toString(similarNumsFound));
 
-        }
+//        //attempting to delete duplicates from set, but do not know how
+//        for (int i = 0; i < similarNumsFound.length; i++) {
+//
+//
+//        }
     }
 
 
