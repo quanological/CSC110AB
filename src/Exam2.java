@@ -197,29 +197,36 @@ public class Exam2 {
 //        }
 //    }
 
-//        int[] set = new int[arr1.length];
-//        int setIndex = 0;
-//        for (int index1 = 0; index1 < arr1.length; index1++) {
-//            System.out.println(index1 + ": ");
-//            for (int index2 = 0; index2 < arr1.length; index2++) {
-//
-//                if (arr1[index1] == arr2[index2]) {
-//                    System.out.println("true");
-//
-//                    set[setIndex] = arr1[index1];
-//                    System.out.println(set[setIndex]);
-//                    setIndex++;
-//
-//                } else {
-//                    System.out.println("false");
-//                }
-//                index1++;
-//            }
-//            System.out.println();
-//        }
-//        for (int i = 0; i < set.length; i++) {
-//
-//        }
+        // array for numbers that are found in both arr1 and arr2
+        int[] similarNumsFound = new int[arr1.length];
+        int simIndex = 0;
+
+        //outer for loop seems redundant
+        for (int index1 = 0; index1 < arr1.length; index1++) {
+            System.out.println(index1 + ": ");
+            for (int index2 = 0; index2 < arr1.length; index2++) {
+
+                if (arr1[index1] == arr2[index2]) {
+                    System.out.println("true");
+
+                    // assigns values that are exact into an array
+                    similarNumsFound[simIndex] = arr1[index1];
+                    simIndex++;
+
+
+                } else {
+                    System.out.println("false");
+                }
+                index1++;
+            }
+            System.out.println();
+        }
+
+        //attempting to delete duplicates from set, but do not know how
+        for (int i = 0; i < similarNumsFound.length; i++) {
+            //write code to remove duplicates
+
+        }
     }
 
 
