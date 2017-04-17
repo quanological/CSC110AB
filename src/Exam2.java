@@ -1,9 +1,11 @@
-import java.util.Arrays;
+import com.sun.tools.javac.util.ArrayUtils;
+
 import java.util.*;
 
 public class Exam2 {
 
     public static void main(String[] args) {
+
 
         /* BLOCKED OUT WHILE I TEST TOTWODIM STRING VERSION
 
@@ -39,17 +41,42 @@ public class Exam2 {
         int[] array = {2,4,5,6,8};
         increase(array);
 
-        */
+
 
         String string1 = "okokok";
         String string2 = "okokok";
 
         System.out.println(isAnagram(string1, string2));
 
-        int[] arrayOfNums1 = {2, 3, 4, 5, 6, 7, 1, 2, 3, 4};
-        int[] arrayOfNums2 = {2, 3, 4, 5, 6, 7, 1, 1, 3, 4};
+        int[] arrayOfNums1 = {2, 3, 4, 5, 6, 7, 1};
+        int[] arrayOfNums2 = {2, 3, 4, 5, 6, 7, 1};
 
-        intersection(arrayOfNums1, arrayOfNums2);
+        int[] intersection1 = {2, 3, 4, 5, 6, 7, 8};
+        int[] intersection2 = {2, 19, 4, 6, 8};
+
+        System.out.println("Intersection must contain only one instance of each occurrence: ");
+
+        System.out.println(Arrays.toString(intersection(intersection1, intersection2)));
+
+        */
+
+        //begin union code
+
+        int[] intersection1 = {2, 3, 4, 5, 6, 7, 8, 8};
+        int[] intersection3 = {2, 4, 4, 5, 5, 6};
+
+        System.out.println("intersection: " + Arrays.toString(intersection(intersection1, intersection3)));
+
+        System.out.println(Arrays.toString(removeDuplicates(intersection3)));
+        int[] intersection2 = {2, 19, 4, 6, 8};
+
+        System.out.println(Arrays.toString(union(intersection1, intersection3)));
+
+//        System.out.println(removeDuplicates(intersection1));
+
+        //System.out.println("Union: ");
+
+        //System.out.println(Arrays.toString(union(intersection1, intersection2)));
 
     }
 
@@ -177,7 +204,97 @@ public class Exam2 {
 
     }
 
-    public static void intersection(int[] arr1, int[] arr2) {
+    public static int[] intersection(int arr1[], int arr2[]) {
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        // length of both arrays combined
+        int[] result = new int[arr1.length + arr2.length];
+
+        //counters for first and second array
+        int i = 0, j = 0;
+
+        // Until one of the loops is exhausted, assign any value that equals each other to the result array
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                i++;
+            } else if (arr2[j] < arr1[i]) {
+                j++;
+            } else {
+                result[i] = arr2[j];
+                j++;
+                i++;
+            }
+        }
+
+        // Sort the result array, remove duplicates, and return the result
+        Arrays.sort(result);
+        result = removeDuplicates(result);
+
+        return result;
+    }
+
+
+    public static int[] union(int[] arr1, int[] arr2) {
+
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        int i = 1;
+        int j = 1;
+
+        int[] intersection = intersection(arr1, arr2);
+
+        int[] result = removeDuplicates(intersection);
+
+        return result;
+    }
+
+    public static int[] removeDuplicates(int[] array) {
+        int j = 0;
+        int i = 1;
+
+        //return if the array length is less than 2
+        if (array.length < 2) {
+            return array;
+        }
+
+        while (i < array.length) {
+
+            if (array[i] == array[j]) {
+                i++;
+            } else {
+                array[++j] = array[i++];
+            }
+
+        }
+        int[] output = new int[j + 1];
+        for (int k = 0; k < output.length; k++) {
+            output[k] = array[k];
+        }
+        return output;
+    }
+
+//    public static ArrayList<Integer> removeDuplicates(int[] array) {
+//
+//        ArrayList<Integer> list = new ArrayList<>(array.length);
+//        int[] result = new int[array.length];
+//
+//        for (int assign = 0; assign < array.length; assign++) {
+//           result[assign] = array[assign];
+//        }
+//
+//
+//        for (int index = 0; index < array.length - 1; index++) {
+//
+//            if (result[index] == array[index + 1]) {
+//                list.remove(index);
+//
+//            }
+//        }
+//
+//        return list;
+//    }
 
 
 //        boolean sameLength = (arr1.length == arr2.length);
@@ -196,40 +313,41 @@ public class Exam2 {
 //            }
 //        }
 //    }
-
-        // array for numbers that are found in both arr1 and arr2
-        int[] similarNumsFound = new int[arr1.length];
-        int simIndex = 0;
-
-        //outer for loop seems redundant
-        for (int index1 = 0; index1 < arr1.length; index1++) {
-            System.out.println(index1 + ": ");
-            for (int index2 = 0; index2 < arr1.length; index2++) {
-
-                if (arr1[index1] == arr2[index2]) {
-                    System.out.println("true");
-
-                    // assigns values that are exact into an array
-                    similarNumsFound[simIndex] = arr1[index1];
-                    simIndex++;
-
-
-                } else {
-                    System.out.println("false");
-                }
-                index1++;
-            }
-            System.out.println();
-        }
-
-        System.out.println(Arrays.toString(similarNumsFound));
+//        // array for numbers that are found in both arr1 and arr2
+//        int[] similarNumsFound = new int[arr1.length];
+//        int simIndex = 0;
+//
+//        //outer for loop seems redundant
+//        for (int index1 = 0; index1 < arr1.length; index1++) {
+//            System.out.println(index1 + ": ");
+//            for (int index2 = 0; index2 < arr1.length; index2++) {
+//
+//                if (arr1[index1] == arr2[index2]) {
+//                    System.out.println("true");
+//
+//                    // assigns values that are exact into an array
+//                    similarNumsFound[simIndex] = arr1[index1];
+//                    simIndex++;
+//
+//
+//                } else {
+//                    System.out.println("false");
+//                }
+//                index1++;
+//            }
+//            System.out.println();
+//        }
+//
+//
+//
+//        System.out.println(Arrays.toString(similarNumsFound));
+//
 
 //        //attempting to delete duplicates from set, but do not know how
 //        for (int i = 0; i < similarNumsFound.length; i++) {
 //
 //
 //        }
-    }
 
 
 }
