@@ -5,6 +5,7 @@ import java.util.Arrays;
  * Class: CSC110AB
  * Professor: Dr. Zerangue
  * Assignment: Lab14
+ * Due Date: April 18th, 2017
  *
  * This program devowel's a word, creates a two dimensional array from a one dimensional array,
  * and gets the union from two integer arrays.
