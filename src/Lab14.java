@@ -12,6 +12,11 @@ public class Lab14 {
 
     public static void main(String[] args) {
 
+        int[] inta = {1, 2, 3, 4, 5, 7, 8, 9, 11};
+        int[] intb = {5, 4, 3, 2, 6, 8, 10, 12, 13, 14};
+//        System.out.println(Arrays.deepToString(toTwoDim(inta, 3, 4)));
+
+        System.out.println(Arrays.toString(union(inta, intb)));
     }
 
 
@@ -27,33 +32,7 @@ public class Lab14 {
         return newArray;
     }
 
-    // Removes duplicates in an array
-    public static int[] removeDuplicates(int[] array) {
-        int j = 0;
-        int i = 1;
-
-        //return if the array length is less than 2
-        if (array.length < 2) {
-            return array;
-        }
-
-        while (i < array.length) {
-
-            if (array[i] == array[j]) {
-                i++;
-            } else {
-                array[++j] = array[i++];
-            }
-
-        }
-        int[] output = new int[j + 1];
-        for (int k = 0; k < output.length; k++) {
-            output[k] = array[k];
-        }
-        return output;
-    }
-
-    // Devowel a string
+    // Devowels a string
     public static String devowel(String sentence) {
 
         for (int index = 0; index < sentence.length(); index++) {
@@ -72,34 +51,65 @@ public class Lab14 {
         return sentence;
     }
 
-    //Returns a one dimensional array that is the union of two integer arrays
+    //Returns the union of two arrays
     public static int[] union(int[] arr1, int[] arr2) {
+
         Arrays.sort(arr1);
+        System.out.println(Arrays.toString(arr1));
         Arrays.sort(arr2);
+        System.out.println(Arrays.toString(arr2));
+        int[] result = new int[arr1.length + arr2.length];
 
-        // length of both arrays combined
-        int[] intersection = new int[arr1.length + arr2.length];
+        int m = arr1.length;
+        int n = arr2.length;
 
-        //counters for first and second array
-        int index = 0, index2 = 0;
+        int i = 0;
+        int j = 0;
+        int count = 0;
+        while (i < m && j < n) {
+            if (arr1[i] < arr2[j]) {
+                result[i] = arr1[i];
+                i++;
+                count++;
+            } else if (arr2[j] < arr1[i]) {
+                result[i] = arr2[j];
 
-        // Until one of the loops is exhausted, assign any value that equals each other to the result array
-        while (index < arr1.length && index2 < arr2.length) {
-            if (arr1[index] < arr2[index2]) {
-                index++;
-            } else if (arr2[index2] < arr1[index]) {
-                index2++;
+                j++;
+                count++;
             } else {
-                intersection[index] = arr2[index2];
-                index2++;
-                index++;
+                result[i] = arr1[i];
+                i++;
+                j++;
+                count++;
+
             }
         }
 
-        //Sort the result array, remove duplicates, and return the result
-        Arrays.sort(intersection);
+        System.out.println("count: " + count);
 
-        return intersection;
+        if (i < m)
+            while (i < m) {
+                result[i] = arr1[i];
+                i++;
+            }
+
+        if (j < m)
+            while (j < m) {
+                result[i] = arr2[j];
+                j++;
+                i++;
+            }
+
+        int[] newResult = new int[count];
+
+        for (int ok = 0; ok < count; ok++) {
+            newResult[ok] = result[ok];
+        }
+
+        System.out.println("result.length = " + newResult.length);
+
+        System.out.println("newResult: " + Arrays.toString(newResult));
+        return newResult;
+
     }
-
 }
