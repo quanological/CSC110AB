@@ -6,19 +6,13 @@ import java.util.Arrays;
  * Professor: Dr. Zerangue
  * Assignment: Lab14
  * <p>
- * This program devowel's a word, creates a two dimensional array from a one dimensional array, and gets the union from two integer arrays.
+ * This program devowel's a word, creates a two dimensional array from a one dimensional array,
+ * and gets the union from two integer arrays.
  */
 public class Lab14 {
 
     public static void main(String[] args) {
-
-        int[] inta = {1, 2, 3, 4, 8};
-        int[] intb = {4, 5, 7, 6, 9};
-//        System.out.println(Arrays.deepToString(toTwoDim(inta, 3, 4)));
-
-        System.out.println(Arrays.toString(union(inta, intb)));
     }
-
 
     //Creates a two dimensional array from a one dimensional array
     public static int[][] toTwoDim(int[] array, int rows, int columns) {
@@ -52,69 +46,32 @@ public class Lab14 {
     }
 
     //Returns the union of two arrays
-    public static int[] union(int[] arr1, int[] arr2) {
+    public static int[] unionArrays(int[]... arrays) {
+        int bothLengths = 0;
+        int counter = 0;
 
-        Arrays.sort(arr1);
-        System.out.println(Arrays.toString(arr1));
-        Arrays.sort(arr2);
-        System.out.println(Arrays.toString(arr2));
-        int[] result = new int[arr1.length + arr2.length];
+        for (int[] array : arrays) {
+            bothLengths += array.length;
+        }
+        int[] accumulator = new int[bothLengths];
 
-        int m = arr1.length;
-        int n = arr2.length;
-
-        int i = 0;
-        int j = 0;
-        int count = 0;
-        while (i < m && j < n) {
-            if (arr1[i] < arr2[j]) {
-                result[i] = arr1[i];
-                i++;
-
-
-                count++;
-            } else if (arr2[j] < arr1[i]) {
-                result[i] = arr2[j];
-                //changed arr2 to i instead of j
-                count++;
-                j++;
-                i++;
-                //left here without incrementing i
-            } else {
-
-                result[i] = arr1[i];
-                j++;
-                count++;
-
+        for (int[] array : arrays) {
+            for (int element : array) {
+                if (!isDuplicated(accumulator, counter, element)) {
+                    accumulator[counter++] = element;
+                }
             }
         }
 
+        int[] result = new int[counter];
+        for (int i = 0; i < counter; i++) result[i] = accumulator[i];
 
-            while (i < m) {
-                result[i] = arr1[i];
-                i++;
-                count++;
-            }
+        return result;
+    }
 
-        while (j < n) {
-                result[i] = arr2[j];
-                j++;
-                i++;
-            count++;
-            }
-
-        System.out.println("Count: " + count);
-
-        System.out.println("Result: " + Arrays.toString(result));
-
-
-        int[] newResult = new int[count];
-
-        for (int ok = 0; ok < count; ok++) {
-            newResult[ok] = result[ok];
-        }
-
-        return newResult;
-
+    //Checls whether an element is duplicated
+    public static boolean isDuplicated(int[] array, int counter, int value) {
+        for (int i = 0; i < counter; i++) if (array[i] == value) return true;
+        return false;
     }
 }
