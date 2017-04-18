@@ -12,8 +12,8 @@ public class Lab14 {
 
     public static void main(String[] args) {
 
-        int[] inta = {1, 2, 3, 4, 5, 7, 8, 9, 11};
-        int[] intb = {5, 4, 3, 2, 6, 8, 10, 12, 13, 14};
+        int[] inta = {1, 2, 3, 4, 8};
+        int[] intb = {4, 5, 7, 6, 9};
 //        System.out.println(Arrays.deepToString(toTwoDim(inta, 3, 4)));
 
         System.out.println(Arrays.toString(union(inta, intb)));
@@ -70,35 +70,43 @@ public class Lab14 {
             if (arr1[i] < arr2[j]) {
                 result[i] = arr1[i];
                 i++;
+
+
                 count++;
             } else if (arr2[j] < arr1[i]) {
                 result[i] = arr2[j];
-
-                j++;
+                //changed arr2 to i instead of j
                 count++;
-            } else {
-                result[i] = arr1[i];
+                j++;
                 i++;
+                //left here without incrementing i
+            } else {
+
+                result[i] = arr1[i];
                 j++;
                 count++;
 
             }
         }
 
-        System.out.println("count: " + count);
 
-        if (i < m)
             while (i < m) {
                 result[i] = arr1[i];
                 i++;
+                count++;
             }
 
-        if (j < m)
-            while (j < m) {
+        while (j < n) {
                 result[i] = arr2[j];
                 j++;
                 i++;
+            count++;
             }
+
+        System.out.println("Count: " + count);
+
+        System.out.println("Result: " + Arrays.toString(result));
+
 
         int[] newResult = new int[count];
 
@@ -106,9 +114,6 @@ public class Lab14 {
             newResult[ok] = result[ok];
         }
 
-        System.out.println("result.length = " + newResult.length);
-
-        System.out.println("newResult: " + Arrays.toString(newResult));
         return newResult;
 
     }
