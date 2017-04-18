@@ -12,6 +12,9 @@ import java.util.Arrays;
 public class Lab14 {
 
     public static void main(String[] args) {
+        int[] A = {2, 4, 6, 5, 7};
+        int[] B = {9, 12, 10, 14, 15};
+        System.out.println(Arrays.toString(union(A, B)));
     }
 
     //Creates a two dimensional array from a one dimensional array
@@ -46,31 +49,27 @@ public class Lab14 {
     }
 
     //Returns the union of two arrays
-    public static int[] unionArrays(int[]... arrays) {
+    public static int[] union(int[]... arrays) {
         int bothLengths = 0;
-        int counter = 0;
+        int count = 0;
 
         for (int[] array : arrays) {
             bothLengths += array.length;
         }
-        int[] accumulator = new int[bothLengths];
+        int[] results = new int[bothLengths];
 
         for (int[] array : arrays) {
             for (int element : array) {
-                if (!isDuplicated(accumulator, counter, element)) {
-                    accumulator[counter++] = element;
+                if (!contains(results, count, element)) {
+                    results[count++] = element;
                 }
             }
         }
-
-        int[] result = new int[counter];
-        for (int i = 0; i < counter; i++) result[i] = accumulator[i];
-
-        return result;
+        return results;
     }
 
     //Checls whether an element is duplicated
-    public static boolean isDuplicated(int[] array, int counter, int value) {
+    public static boolean contains(int[] array, int counter, int value) {
         for (int i = 0; i < counter; i++) if (array[i] == value) return true;
         return false;
     }
