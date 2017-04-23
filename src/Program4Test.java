@@ -55,8 +55,6 @@ public class Program4Test {
 
         printMatrix(nums, names);
 
-        System.out.println("Aleah[89][10] " + nums[89][10]);
-
 
 
 
@@ -101,7 +99,7 @@ public class Program4Test {
         return names;
     }
 
-    public static int[][] populateYears(String[] oneLongAssArray, int lineCount) throws ArrayIndexOutOfBoundsException {
+    public static int[][] populateYears(String[] oneLongAssArray, int lineCount) {
 
         int decades = oneLongAssArray.length / 11;
         int[][] nums = new int[lineCount][11];
