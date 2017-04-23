@@ -17,58 +17,105 @@ public class Program4Test {
 //    public Program4Test() throws FileNotFoundException {
 //    }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, ArrayIndexOutOfBoundsException {
 
-        int lineCount;
-        //Read in the file
         File fr = new File(FILENAME);
+        Scanner file = new Scanner(fr);
 
-        Scanner fileScan = new Scanner(fr);
-
-        // Count number of Lines in the file
-        lineCount = countLinesInFile(fileScan);
+        int decade = 1;
 
 
-        //RESET THE SCANNER
-        fileScan.close();
-        fileScan = null;
-        fileScan = new Scanner(fr);
+        String[] names = new String[103];
 
-        //ONE DIMENSIONAL ARRAY FOR ALL THE INTEGER
-        String[] oneLongAssArray = new String[lineCount * 12];
+        int nameLength = 103;
+        int decadesAmount = 11;
+        int[][] nums = new int[nameLength][decadesAmount];
 
-        // STORE EVERY ELEMENT INTO ONE ARRAY
-        for (int i = 0; i < oneLongAssArray.length; i++) {
-            oneLongAssArray[i] = fileScan.next();
+        int nameCount = 0;
+        int row = 0;
+        int col = 0;
+        int index = 0;
+        int numIndex = 1;
+
+
+        while (file.hasNextLine()) {
+
+
+            while (nameCount < 103) {
+
+                String line = file.nextLine();
+
+                String[] lineParts = line.split(" ");
+
+                //get the first part of the string, everytime
+                index = 0;
+                names[nameCount] = lineParts[index];
+                //but count up the name, so that it stores right
+                nameCount++;
+
+
+                //while there are still parts left in the line.. get number
+                // dont exceed number of columns initialized
+                while (numIndex < 12 & col < 11) {
+                    //start the numIndex at 1
+                    nums[row][col] = Integer.parseInt(lineParts[numIndex]);
+                    numIndex++;
+                    col++;
+                }
+                row++;
+                col = 0;
+                numIndex = 1;
+            }
+
+
         }
 
-
-        //POPULATE THE NAMES ARRAY -- DONE
-        String[] names = populateNamesArray(oneLongAssArray);
-//        System.out.println("Names: ");
-//        System.out.println(Arrays.toString(names));
-
-        //POPULATE THE INTEGER ARRAY FOR 1900-1910
-//        int[][] nums = populateYears(oneLongAssArray, lineCount);
-
-        int[][] nums = populateYearsModify(oneLongAssArray, lineCount);
+        System.out.println(Arrays.toString(names));
 
         printMatrix(nums, names);
 
 
-
-
-//        //Print the ranking for name "A" (row 0) and for 1900-1910 (index 0)
-//        System.out.println("nums[0][1] = " + nums[0][0]);
-//
-//        //Print ranking for name "A" (row 0) and for 1910-1920 (index 2)
-//        System.out.println("nums[0][2] = " + nums[0][2]);
-//
-//        System.out.println("num[1][2] = " + nums[1][2]);
-//
-//        System.out.println("nums[2][2] = " + nums[2][2]);
-
+//        System.out.println(Arrays.toString(names));
+//        printMatrix(nums, names);
     }
+
+//ENABLE FOR WORKING CODE
+//        int lineCount;
+//        //Read in the file
+//        File fr = new File(FILENAME);
+//
+//        Scanner fileScan = new Scanner(fr);
+//
+//        // Count number of Lines in the file
+//        lineCount = countLinesInFile(fileScan);
+//
+//
+//        //RESET THE SCANNER
+//        fileScan.close();
+//        fileScan = null;
+//        fileScan = new Scanner(fr);
+//
+//        //ONE DIMENSIONAL ARRAY FOR ALL THE INTEGER
+//        String[] oneLongAssArray = new String[lineCount * 12];
+//
+//        // STORE EVERY ELEMENT INTO ONE ARRAY
+//        for (int i = 0; i < oneLongAssArray.length; i++) {
+//            oneLongAssArray[i] = fileScan.next();
+//        }
+//
+//
+//        //POPULATE THE NAMES ARRAY -- DONE
+//        String[] names = populateNamesArray(oneLongAssArray);
+////        System.out.println("Names: ");
+////        System.out.println(Arrays.toString(names));
+//
+//        //POPULATE THE INTEGER ARRAY FOR 1900-1910
+////        int[][] nums = populateYears(oneLongAssArray, lineCount);
+//
+//        int[][] nums = populateYearsModify(oneLongAssArray, lineCount);
+//
+//        printMatrix(nums, names);
+
 
     //Displays a 2d array in the console, one line per row.
     static void printMatrix(int[][] grid, String[] names) {
