@@ -49,17 +49,16 @@ public class Program4Test {
 //        System.out.println(Arrays.toString(names));
 
         //POPULATE THE INTEGER ARRAY FOR 1900-1910
-        int[][] nums = populateYears(oneLongAssArray, lineCount);
+//        int[][] nums = populateYears(oneLongAssArray, lineCount);
 
-//        System.out.println(Arrays.deepToString(nums));
-
+        int[][] nums = populateYearsModify(oneLongAssArray, lineCount);
 
         printMatrix(nums, names);
 
+        System.out.println("Aleah[89][10] " + nums[89][10]);
 
-//        System.out.print("Second name, 2nd rank: ");
 
-//        System.out.println(nums[6][1]);
+
 
 //        //Print the ranking for name "A" (row 0) and for 1900-1910 (index 0)
 //        System.out.println("nums[0][1] = " + nums[0][0]);
@@ -78,7 +77,7 @@ public class Program4Test {
 
 
         for (int r = 0; r < grid.length; r++) {
-            System.out.println(names[r]);
+            System.out.print(names[r] + "[" + r + "]" + " ");
 
             for (int c = 0; c < grid[r].length; c++)
                 System.out.print(grid[r][c] + " ");
@@ -104,8 +103,8 @@ public class Program4Test {
 
     public static int[][] populateYears(String[] oneLongAssArray, int lineCount) throws ArrayIndexOutOfBoundsException {
 
-        int intCols = oneLongAssArray.length / 11;
-        int[][] nums = new int[lineCount][intCols];
+        int decades = oneLongAssArray.length / 11;
+        int[][] nums = new int[lineCount][11];
 
 
         int count = 0;
@@ -124,6 +123,34 @@ public class Program4Test {
                         count += 12;
                     }
                 }
+
+            }
+
+
+        }
+        return nums;
+    }
+
+
+    public static int[][] populateYearsModify(String[] oneLongAssArray, int lineCount) throws ArrayIndexOutOfBoundsException {
+
+        int decades = 11;
+        int[][] nums = new int[lineCount][decades];
+
+
+        int count = 1;
+        for (int name = 0; name < lineCount; name++) {
+
+
+            if (count % 12 != 0) {
+
+                for (int decade = 0; decade < decades; decade++) {
+                    if (count < 1236) {
+                        nums[name][decade] = Integer.parseInt(oneLongAssArray[count]);
+                        count++;
+                    }
+                }
+                count++;
 
             }
 
