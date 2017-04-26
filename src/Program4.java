@@ -191,8 +191,6 @@ public class Program4 {
                         swapped = true;
 
                     }
-                    System.out.println("Rank: " + getRanking(indexArray[i], decade) + " Name: " + getName(indexArray[i]));
-                    System.out.println("Rank: " + getRanking(indexArray[i + 1], decade) + " Name: " + getName(indexArray[i + 1]));
 
                 }
 
@@ -201,6 +199,13 @@ public class Program4 {
 //            System.out.println(Arrays.toString(indexArray));
 //            System.out.println(getName(index) + " " + getRanking(index, decade));
         }
+
+        for (int each = 0; each < indexArray.length - 1; each++) {
+            System.out.println(getName(indexArray[each]) + " (rank: " + getRanking(indexArray[each], decade) + ")");
+
+        }
+
+
         System.out.println(Arrays.toString(indexArray));
 
 
@@ -225,6 +230,42 @@ public class Program4 {
                 "11 - 2000-2005");
 
         int chooseOption = kb.nextInt();
+
+        switch (chooseOption) {
+            case 1:
+                chooseOption = 0;
+                break;
+            case 2:
+                chooseOption = 1;
+                break;
+            case 3:
+                chooseOption = 2;
+                break;
+            case 4:
+                chooseOption = 3;
+                break;
+            case 5:
+                chooseOption = 4;
+                break;
+            case 6:
+                chooseOption = 5;
+                break;
+            case 7:
+                chooseOption = 6;
+                break;
+            case 8:
+                chooseOption = 7;
+                break;
+            case 9:
+                chooseOption = 8;
+                break;
+            case 10:
+                chooseOption = 9;
+                break;
+            case 11:
+                chooseOption = 10;
+                break;
+        }
         return chooseOption;
     }
 
