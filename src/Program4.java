@@ -114,7 +114,7 @@ public class Program4 {
         //Get the indices of elements
         //and rankings
         for (int i = 0; i < NUMS.length - 1; i++) {
-            if (NUMS[i][decade] <= topNames && NUMS[i][decade] != 0) {
+            if (NUMS[i][decade] < topNames + 1 && NUMS[i][decade] != 0) {
                 System.out.println(NUMS[i][decade]);
                 count++;
                 System.out.println("The name for the current iteration is: " + NAMES[i]);
@@ -173,11 +173,12 @@ public class Program4 {
 //        }
 
         //CREATE A NEW ARRAY THAT IS LENGTH OF ALL ELEMENTS THAT ARENT 0
-        bubbleIntSort(filledRankingArray);
+//        bubbleIntSort(filledRankingArray);
 
         for (int num : filledRankingArray)
-            System.out.println("Rank: " + num);
+            System.out.println(num);
 
+        bubbleIntSort(indexArray);
         boolean swapped = false;
         for (int index : indexArray) {
 
@@ -187,6 +188,7 @@ public class Program4 {
                 //calculate differences
                 for (int i = 0; i < filledRankingArray.length - 1; i++) {
                     if (getRanking(indexArray[i], decade) > getRanking(indexArray[i + 1], decade)) {
+//                    if (getName(indexArray[i]).charAt(0) > getName(indexArray[i + 1]).charAt(0)) {
                         swapInt(indexArray, i, i + 1);
                         swapped = true;
 
