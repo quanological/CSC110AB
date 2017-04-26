@@ -9,6 +9,8 @@
  * <p>
  * <p>
  * Questions: Is using the println() method on PrintStream the correct way to write to a file?
+ * How do I put the loops inside the topName method inside a method? It will not return the same method. Try
+ * using a different array name as the header parameter of the method.
  */
 
 import java.io.*;
@@ -33,8 +35,13 @@ public class Program4 {
 
         readFile(file, NAMES, NUMS);
 
+        introduction();
+        System.out.print("Enter an option: ");
+        option = kb.nextInt();
+        chooseOption(option);
 
-        topNames();
+
+//        System.out.println(getRanking(4428, 10));
     }
 
     /**
@@ -45,13 +52,14 @@ public class Program4 {
     public static void chooseOption(int option) throws FileNotFoundException {
         switch (option) {
             case 1:
-                getNamesByLength(); // Can't simply call getNamesByLength here, because then it won't know// which names array I am referring to, or where to output the file.
+                increaseLength(NUMS, NAMES); // Can't simply call getNamesByLength here, because then it won't know// which names array I am referring to, or where to output the file.
                 break;
             case 2:
                 namesBetterThanAName();
                 break;
-//            case 2: sortNamesByLength(numArray, decade, name);
-//                break;
+            case 3:
+                topNames();
+                break;
             default:
                 System.out.println("This is the default");
                 break;
@@ -64,7 +72,7 @@ public class Program4 {
         int decade = chooseDecade();
         kb.close();
         //Get the name
-        int nameIndex = getNameIndex(name);
+        int nameIndex = getNameIndex(name, NAMES);
 //        String name = NAMES[nameIndex];
 
         String fileName = "NamesBetterThan" + name + "ForDecade_" + decade + ".txt";
@@ -99,49 +107,43 @@ public class Program4 {
 //        }
     }
 
-    public static void topNames() {
+    public static void topNames() throws FileNotFoundException {
 
         System.out.println("Enter a number for top names: ");
         int topNames = kb.nextInt();
         System.out.println("Enter a decade: ");
         int decade = chooseDecade();
 
+        PrintStream writeToFile = new PrintStream("/Users/qmtruong92/CSC110AB/src/option3.txt");
 
-        int count = 0;
+
+        int count = 0; //count numbers that aren't 0
+
+        //initializr to 500 and then reduce size
         int counter[] = new int[5000];
         int rankingArray[] = new int[5000];
 
-        //Get the indices of elements
-        //and rankings
-        for (int i = 0; i < NUMS.length - 1; i++) {
-            if (NUMS[i][decade] < topNames + 1 && NUMS[i][decade] != 0) {
-                System.out.println(NUMS[i][decade]);
+
+        //Get the indices of elements that have a bigger ranking than user input
+        for (int i = 0; i < NUMS.length; i++) {
+            if (NUMS[i][decade] < (topNames + 1) && NUMS[i][decade] != 0) {
                 count++;
-                System.out.println("The name for the current iteration is: " + NAMES[i]);
-                System.out.println("The rank for the current iteration is: " + NUMS[i][decade]);
-                System.out.println("Total number of names found better than input: " + count);
-//                counter[i] = NUMS[i][decade];
                 counter[i] = i;
                 rankingArray[i] = NUMS[i][decade];
             }
-
         }
 
-
+        //sort the counter and ranking array
         bubbleIntSort(counter);
         bubbleIntSort(rankingArray);
 
-        System.out.println("RANK ARRAY: ");
-        System.out.println(Arrays.toString(rankingArray));
+
         int[] indexArray = new int[count];
 
-//        System.out.println("Indices of counter[]: ");
-//        for (int number: counter)
-//            System.out.println(number);
-
         int[] filledRankingArray = new int[count];
-        //CREATE AN ARRAY WITH THE VALUES THAT WERE FILLED IN COUNTER
         int z = 0;
+
+        //Fill array with while counter is not over count
         while (z < count) {
             for (int index = counter.length - 1; index > 5000 - 1 - count; index--) {
                 if (counter[index] != 0) {
@@ -153,64 +155,39 @@ public class Program4 {
                 }
 
             }
-            //HI DR ZERANGUE
         }
 
-
-//        for (int number : newArray) {
-//            System.out.println(number);
-//        }
-
-        //PRINT THE BUBBLE SORTED ARRAY
-        //THIS IS USED TO PRINT THE NAMES ONLY
-//        System.out.println("Starting the bubble sort array: ");
-//        for (int number : indexArray) {
-////            System.out.println(getName(number));
-//            System.out.println("Index is: " + number +"\n"
-//            + "Name is: " + getName(number));
-//            System.out.println("Ranking is: " + getRanking(number, decade));
-//            System.out.println();
-//        }
-
-        //CREATE A NEW ARRAY THAT IS LENGTH OF ALL ELEMENTS THAT ARENT 0
+        bubbleIntSort(indexArray);
 //        bubbleIntSort(filledRankingArray);
 
-        for (int num : filledRankingArray)
-            System.out.println(num);
-
-        bubbleIntSort(indexArray);
+        //REPLACE WITH BUBBLE INT SORT
         boolean swapped = false;
         for (int index : indexArray) {
-
             do {
                 swapped = false;
 
-                //calculate differences
                 for (int i = 0; i < filledRankingArray.length - 1; i++) {
                     if (getRanking(indexArray[i], decade) > getRanking(indexArray[i + 1], decade)) {
 //                    if (getName(indexArray[i]).charAt(0) > getName(indexArray[i + 1]).charAt(0)) {
                         swapInt(indexArray, i, i + 1);
                         swapped = true;
-
                     }
-
                 }
 
             } while (swapped);
 
-//            System.out.println(Arrays.toString(indexArray));
-//            System.out.println(getName(index) + " " + getRanking(index, decade));
         }
 
-        for (int each = 0; each < indexArray.length - 1; each++) {
-            System.out.println(getName(indexArray[each]) + " (rank: " + getRanking(indexArray[each], decade) + ")");
+        for (int each = 0; each < indexArray.length; each++) {
+            writeToFile.println(getName(indexArray[each]) + " (rank: " + getRanking(indexArray[each], decade) + ")");
 
         }
 
 
-        System.out.println(Arrays.toString(indexArray));
+    }
 
-
+    public static int increaseCountByOne(int count) {
+        return count + 1;
     }
 
     public static String getName(int index) {
@@ -271,22 +248,119 @@ public class Program4 {
         return chooseOption;
     }
 
+    public static void increaseLength(int nums[][], String[] names) throws FileNotFoundException {
 
-    //Returns the names organized length as well as alphabetically
-    public static void getNamesByLength() throws FileNotFoundException {
+        PrintStream writeToFile = new PrintStream(new File("ByNameLength.txt"));
 
-        PrintStream printToByNamesLength = new PrintStream(BYNAMESLENGTH);
-        bubbleSort(NAMES);
+        int maxLengthOfNames = 0;
+        int i;
+        int nameCount = 0;
 
-        for (String name : NAMES) {
-            printToByNamesLength.println(name);
+        for (i = 0; i < names.length; i++) {
+            if (names[i].length() > maxLengthOfNames) {
+                maxLengthOfNames = names[i].length();
+            }
+        }
+
+        for (int k = 1; k <= maxLengthOfNames; k++) {
+            for (i = 0; i < names.length; i++) {
+                if (names[i].length() == k) {
+                    nameCount++;
+
+                    System.out.print(names[i] + " ");
+                    for (int j = 0; j < maxLengthOfNames; j++) {
+                        System.out.print(nums[i][j] + " ");
+                    }
+
+                    System.out.println();
+                }
+            }
         }
     }
 
-    public static int getNameIndex(String targetName) {
+
+/*
+    //Returns the names organized length as well as alphabetically
+    public static void getNamesByLength() throws FileNotFoundException {
+
+//        for (String name: NAMES) {
+//            System.out.println(name);
+//        }
+
+
+        String[] namess = NAMES;
+        int[] nameIndex = new int [namess.length];
+        int fuck = 0;
+        for (String name : namess) {
+            System.out.println(name);
+            System.out.println("Index" );
+            System.out.println(getNameIndex(namess[fuck], namess));
+            fuck++;
+        }
+
+        //just loop through 1 at a time?
+        for (int fuckme = 0; fuckme < LENGTH; fuckme++) {
+
+            for (int eleven = 0; eleven < 11; eleven++) {
+                System.out.print(NUMS[fuckme][eleven] + " ");
+            }
+            System.out.println();
+        }
+
+// ON HOLD
+//        PrintStream printToByNamesLength = new PrintStream(BYNAMESLENGTH);
+//
+//        String[]  namesByLength = bubbleSortReturn(NAMES);
+//
+//
+//
+//        int[] parArr = new int[namesByLength.length];
+//
+//        //holds the index for each value
+//        for (int j = 0; j < parArr.length; j++) {
+//            parArr[j] = getNameIndex(namesByLength[j], namesByLength);
+//
+////            System.out.println(NAMES[j]);
+//            System.out.println("Current index is: " + parArr[j]);
+//
+//        }
+//
+//
+//
+//
+//
+//int index = 0;
+//        for (String name : NAMES) {
+//            System.out.print(name + " ");
+//
+//            //prints out the rankings for each name
+////            for (int kay = 0; kay < NAMES.length; kay++) {
+//                for (int k = 0; k < 11; k++) {
+//                    System.out.print(NUMS[getNameIndex(name, NAMES)][k] + " ");
+//                }
+//                System.out.println();
+//                index++;
+////            }
+//
+//        }
+    }
+
+
+//            for (int j = 0; j < NAMES.length; j++) {
+//                printToByNamesLength.print(getNameIndex(name) + " ");
+//                for (int i = 0; i < 11; i++) {
+//                    printToByNamesLength.print(NUMS[getNameIndex(name)][i] + " ");
+//
+//                }
+//            }
+
+*/
+
+
+    public static int getNameIndex(String targetName, String[] array) {
         int targetFoundAt = -1;
-        for (int i = 0; i < NAMES.length; i++) {
-            if (targetName.equalsIgnoreCase(NAMES[i])) {
+        for (int i = 0; i < array.length; i++) {
+            if (targetName.equalsIgnoreCase(array[i])) {
                 targetFoundAt = i;
             }
         }
@@ -368,6 +442,27 @@ public class Program4 {
 
             }
         } while (swapped);
+    }
+
+    public static String[] bubbleSortReturn(String[] arr) {
+        boolean swapped = false;
+        do {
+            swapped = false;
+            for (int i = 0; i < arr.length - 1; i += 1) {
+
+
+                if (arr[i].length() > arr[i + 1].length()) {
+                    swap(arr, i, i + 1);
+                    swapped = true;
+                }
+
+                // or else move to next loop
+
+
+            }
+        } while (swapped);
+
+        return arr;
     }
 
     // Mutates the original array
