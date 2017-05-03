@@ -17,7 +17,7 @@ public class Deck {
      * Keeps track of the number of cards that have been dealt from
      * the deck so far.
      */
-    private int cardsUsed;
+    private int totalCardsUsed;
 
 
     /**
@@ -34,7 +34,7 @@ public class Deck {
                 amtOfCards++;
             }
         }
-        cardsUsed = 0;
+        totalCardsUsed = 0;
     }
 
     /**
@@ -49,7 +49,7 @@ public class Deck {
             deck[random] = temp;
         }
 
-        cardsUsed = 0;
+        totalCardsUsed = 0;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Deck {
      * @return
      */
     public int cardsLeft() {
-        return deck.length - cardsUsed;
+        return deck.length - totalCardsUsed;
     }
 
     /**
@@ -67,13 +67,10 @@ public class Deck {
      * @return The amount of cards left in the deck.
      */
     public Card dealCard() {
-        if (cardsUsed == deck.length)
+        if (totalCardsUsed == deck.length)
             System.out.println("No cards are left in the deck");
-        cardsUsed++;
-        return deck[cardsUsed - 1];
-        // Programming note:  Cards are not literally removed from the array
-        // that represents the deck.  We just keep track of how many cards
-        // have been used.
+        totalCardsUsed++;
+        return deck[totalCardsUsed - 1];
     }
 
-} // end class Deck
+} 
