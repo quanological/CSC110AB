@@ -290,7 +290,6 @@ public class Prog04 {
         writeToFile.print(getDecadeString(decade + 1) + ": ");
         writeToFile.println();
 
-//        System.out.println("How many top names to find: " + topNames);
         System.out.println(count + " names written to file: Top_" + topNames + "_Names_Decade_" + decade + ".txt");
 
     }
