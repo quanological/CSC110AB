@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Program4 {
+public class Prog04 {
 
     //Row height of names.txt
     public static final int LENGTH = 4429;
@@ -28,9 +28,7 @@ public class Program4 {
     public static void main(String[] args) throws FileNotFoundException, ArrayIndexOutOfBoundsException, NumberFormatException {
         File fr = new File(FILENAME);
         Scanner file = new Scanner(fr);
-
         readFile(file, NAMES, NUMS);
-
         introduction();
         chooseOption();
     }
@@ -264,14 +262,12 @@ public class Program4 {
             }
         }
 
-
         //sort the counter and ranking array
         bubbleIntSort(counter);
         bubbleIntSort(rankingArray);
 
         //Create a new array that is going to be resized to the proper size
         int[] indexArray = new int[count];
-
 
         //Fill array with while counter is not over count
         indexArray = resizeAndFillArrayWithCorrectSize(indexArray, counter, count);
@@ -321,7 +317,6 @@ public class Program4 {
                 if (counter[index] != 0) {
                     indexArray[z] = counter[index];
                     z++;
-
                 }
             }
         }
@@ -332,6 +327,7 @@ public class Program4 {
     public static void bubbleIntSortCompareRankings(int[] indexArray, int decade) {
 
         boolean swapped = false;
+
         for (int index : indexArray) {
             do {
                 swapped = false;
@@ -343,9 +339,7 @@ public class Program4 {
                         swapped = true;
                     }
                 }
-
             } while (swapped);
-
         }
     }
 
@@ -491,7 +485,6 @@ public class Program4 {
 
     //Sort an integer array
     public static void bubbleIntSort(int[] nums) {
-
         boolean swapped = false;
 
         do {
@@ -536,7 +529,6 @@ public class Program4 {
                 index = 0;
                 names[nameCount] = lineParts[index];
                 nameCount++;
-
 
                 while (numIndex < 12 & col < COLUMNS) {
                     //start the numIndex at 1
