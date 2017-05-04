@@ -3,7 +3,7 @@
  * Professor: Dr. Zerangue
  * Class: CSC110AB
  * Date: April 13, 2017
- *
+ * <p>
  * This program returns the last index of a parameter in an array, and also gets the median number that occurs
  * in an array.
  */
@@ -29,6 +29,7 @@ public class Lab13 {
         }
         return lastIndex;
     }
+
     /**
      * Returns the middle number in an odd array.
      * @param array Integer Array. The integer array to be searched for a median number.

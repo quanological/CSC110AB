@@ -7,6 +7,15 @@
  *
  * A recursive number guessing game. The user inputs numbers until it matches a computer generated
  * number within a given range.
+ *
+ * Programmer: Quan Truong
+ * Assignment: Lab09
+ * Date: March 27, 2017
+ * Professor: Dr. Zerangue
+ * Class: CSC110AB 12:00 - 12:50 PM
+ *
+ * A recursive number guessing game. The user inputs numbers until it matches a computer generated
+ * number within a given range.
  */
 /**
  * Programmer: Quan Truong
@@ -23,10 +32,9 @@ import java.util.*;
 
 public class Lab09 {
 
+    public static final int MAX_GUESS = 100;
     public static int successfulGuessCounter = 0;
     public static int outOfRangeCounter = 0;
-    public static final int MAX_GUESS = 100;
-
     public static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -44,9 +52,7 @@ public class Lab09 {
         // Check whether user input is equal to the computer generated number
         isEqual(userValue, computerValue);
 
-        // Print number of tries to screen
-        System.out.println("You got it right! It took you " + successfulGuessCounter + " tries.");
-        System.out.println("You had " + outOfRangeCounter + " out of range tries.");
+
     }
 
     /**
@@ -66,13 +72,13 @@ public class Lab09 {
 
                 newUser = userValue;
                 newMax = newUser - 1;
-                System.out.println("Too high! Enter another number between " + (lowValue) + " and " + (newMax));
+                System.out.println("Too high! Pick between " + (lowValue) + " and " + (newMax));
                 userValue = in.nextInt();
                 successfulGuessCounter++;
 
             } else if (userValue < computerValue) {
                 lowValue = userValue;
-                System.out.println("Too low! Enter a number between " + (userValue + 1) + " and " + (newMax));
+                System.out.println("Too low! Pick between " + (userValue + 1) + " and " + (newMax));
                 userValue = in.nextInt();
                 successfulGuessCounter++;
 
@@ -81,6 +87,10 @@ public class Lab09 {
                 userValue = in.nextInt();
                 outOfRangeCounter++;
             }
+
         }
+        // Print number of tries to screen
+        System.out.println("You got it right! It took you " + successfulGuessCounter + " tries.");
+        System.out.println("You had " + outOfRangeCounter + " out of range tries.");
     }
 }
